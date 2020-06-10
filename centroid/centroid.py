@@ -10,7 +10,7 @@ class Point:
     y: float
 
     def dist(self, p):
-        return sqrt((self.x**2 + p.x**2) + (self.y**2 + p.y**2))
+        return sqrt((self.x - p.x)**2 + (self.y - p.y)**2)
 
 
 @dataclass
@@ -52,6 +52,7 @@ def make_coalition(groups):
 p1 = Point('p1', 0, 1)
 p2 = Point('p2', 0, 0)
 p3 = Point('p3', 1, 0)
+print("dist", p1.dist(p3))
 t1 = Triangle('t1', p1, p2, p3)
 print(t1, t1.centroid(), "Index: ", t1.index())
 
@@ -74,6 +75,15 @@ france2006 = ("France 2006",
                Point("LM", -0.44, -0.27),
                Point("SE", -0.08, -0.31)])
 
+france2018 = ("France 2018",
+              [Point("M", 0.43, 0.60),
+               Point("P", -0.13, 0.89),
+               Point("SS", -0.04, 0.55),
+               Point("LS", -0.19, 0.47),
+               Point("SM", -0.20, 0.26),
+               Point("LM", -0.27, 0.12),
+               Point("SE", 0.04, 0.00)])
+
 
 def process_data(data_groups):
     for data_group in data_groups:
@@ -85,4 +95,4 @@ def process_data(data_groups):
         print('**')
 
 
-# process_data([france1990, france2006])
+process_data([france1990, france2006, france2018])
