@@ -1,3 +1,7 @@
+# Art Goldhammer
+# Created 6/10/2020
+# MIT License
+
 from dataclasses import dataclass
 from math import sqrt
 from itertools import combinations
