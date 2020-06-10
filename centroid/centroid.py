@@ -92,4 +92,5 @@ def process_data(data_groups):
         print('**')
 
 
-process_data([france1990, france2006, france2018])
+if __name__ == "__main__":
+    process_data([france1990, france2006, france2018])
