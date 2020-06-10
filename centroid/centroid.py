@@ -35,11 +35,9 @@ class Triangle:
         return cen.dist(self.v1) + cen.dist(self.v2) + cen.dist(self.v3)
 
 
-def make_coalitions(country):
+def make_groups(country):
     "given country data, group by triplets"
-    coals = list(combinations(country, 3))
-    coals.sort(key=lambda x: x[0].name)
-    return coals
+    return combinations(country, 3)
 
 
 def make_coalition(groups):
@@ -47,14 +45,6 @@ def make_coalition(groups):
     grp1, grp2, grp3 = groups
     coalition_name = grp1.name + '+' + grp2.name + '+' + grp3.name
     return Triangle(coalition_name, grp1, grp2, grp3)
-
-
-p1 = Point('p1', 0, 1)
-p2 = Point('p2', 0, 0)
-p3 = Point('p3', 1, 0)
-print("dist", p1.dist(p3))
-t1 = Triangle('t1', p1, p2, p3)
-print(t1, t1.centroid(), "Index: ", t1.index())
 
 
 france1990 = ("France 1990",
@@ -89,9 +79,16 @@ def process_data(data_groups):
     for data_group in data_groups:
         name, data = data_group
         print(name + '\n-----------')
-        for grp in make_coalitions(data):
+        coalitions = []  # initialize list of coalitions
+        for grp in make_groups(data):
+            # represent each group as a coalition (triangle)
             co = make_coalition(grp)
-            print("Index: ", co.name, co.index())
+            # for each coalition co, compute index and append to coalition list
+            coalitions.append((co.name, co.index()))
+        # sort the coalitions by index
+        coalitions.sort(key=lambda x: x[1])
+        for name, index in coalitions:
+            print(f'{name}: {index}')
         print('**')
 
 

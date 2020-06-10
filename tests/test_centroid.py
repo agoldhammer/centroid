@@ -22,7 +22,8 @@ def test_centroid():
 
 def test_index():
     p1 = Point('p1', 0, 0)
-    p2 = Point('p2', 1, 0)
-    p3 = Point('p3', 0, 1)
+    p2 = Point('p2', 1, 3)
+    p3 = Point('p3', 2, 0)
     t1 = Triangle('t1', p1, p2, p3)
-    assert(t1.index() == 1.9621165057908914)
+    assert(t1.centroid() == Point('Centroid:t1', 1, 1))
+    assert(t1.index() == 2*sqrt(2) + 2)
